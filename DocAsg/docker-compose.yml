@@ -1,0 +1,42 @@
+# Remove the version line as it's now obsolete
+services:
+  db:
+    image: postgres:latest
+    container_name: db
+    environment:
+      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: user
+      POSTGRES_DB: db
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - network
+
+  backend:
+    build: ./backend
+    container_name: backend
+    depends_on:
+      - db
+    ports:
+      - "8080:8080"
+    networks:
+      - network
+
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    depends_on:
+      - backend
+    ports:
+      - "3000:80"
+    networks:
+      - network
+
+networks:
+  network:
+    driver: bridge
+
+volumes:
+  postgres_data:
