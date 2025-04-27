@@ -21,11 +21,11 @@ jobs:
 
       - name: Install Dependencies
         run: npm install
-        working-directory: frontend
+        working-directory: DocAsg/frontend
 
       - name: Run Frontend Tests
         run: npm test -- --watchAll=false
-        working-directory: frontend
+        working-directory: DocAsg/frontend
 
       - name: Set up Maven
         uses: actions/setup-java@v3
@@ -35,4 +35,4 @@ jobs:
 
       - name: Run Backend Tests
         run: mvn test
-        working-directory: backend
+        working-directory: DocAsg/backend
