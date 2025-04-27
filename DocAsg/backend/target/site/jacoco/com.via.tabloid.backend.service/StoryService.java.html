@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>StoryService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">VIA Tabloid Backend</a> &gt; <a href="index.source.html" class="el_package">com.via.tabloid.backend.service</a> &gt; <span class="el_source">StoryService.java</span></div><h1>StoryService.java</h1><pre class="source lang-java linenums">package com.via.tabloid.backend.service;
+
+
+
+import com.via.tabloid.backend.model.Story;
+
+import com.via.tabloid.backend.repository.StoryRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+
+
+@Service
+
+public class StoryService {
+
+    
+
+    private final StoryRepository storyRepository;
+
+    
+
+    @Autowired
+
+<span class="fc" id="L29">    public StoryService(StoryRepository storyRepository) {</span>
+
+<span class="fc" id="L31">        this.storyRepository = storyRepository;</span>
+
+<span class="fc" id="L33">    }</span>
+
+    
+
+    public List&lt;Story&gt; getAllStories() {
+
+<span class="fc" id="L39">        return storyRepository.findAll();</span>
+
+    }
+
+    
+
+    public List&lt;Story&gt; getStoriesByDepartment(String department) {
+
+<span class="nc" id="L47">        return storyRepository.findByDepartment(department);</span>
+
+    }
+
+    
+
+    public Story getStoryById(Long id) {
+
+<span class="fc" id="L55">        return storyRepository.findById(id).orElse(null);</span>
+
+    }
+
+    
+
+    public Story createStory(Story story) {
+
+<span class="fc" id="L63">        return storyRepository.save(story);</span>
+
+    }
+
+    
+
+    public Story updateStory(Long id, Story storyDetails) {
+
+<span class="fc" id="L71">        Story story = storyRepository.findById(id).orElse(null);</span>
+
+<span class="fc bfc" id="L73" title="All 2 branches covered.">        if (story != null) {</span>
+
+<span class="fc" id="L75">            story.setTitle(storyDetails.getTitle());</span>
+
+<span class="fc" id="L77">            story.setContent(storyDetails.getContent());</span>
+
+<span class="fc" id="L79">            story.setDepartment(storyDetails.getDepartment());</span>
+
+<span class="fc" id="L81">            return storyRepository.save(story);</span>
+
+        }
+
+<span class="fc" id="L85">        return null;</span>
+
+    }
+
+    
+
+    public boolean deleteStory(Long id) {
+
+<span class="fc" id="L93">        Story story = storyRepository.findById(id).orElse(null);</span>
+
+<span class="fc bfc" id="L95" title="All 2 branches covered.">        if (story != null) {</span>
+
+<span class="fc" id="L97">            storyRepository.delete(story);</span>
+
+<span class="fc" id="L99">            return true;</span>
+
+        }
+
+<span class="fc" id="L103">        return false;</span>
+
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

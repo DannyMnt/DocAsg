@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.via.tabloid.backend.controller.StoryControllerTest
+-------------------------------------------------------------------------------
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.577 s -- in com.via.tabloid.backend.controller.StoryControllerTest

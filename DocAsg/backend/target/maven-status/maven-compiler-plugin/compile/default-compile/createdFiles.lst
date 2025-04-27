@@ -1,0 +1,5 @@
+com/via/tabloid/backend/model/Story.class
+com/via/tabloid/backend/repository/StoryRepository.class
+com/via/tabloid/backend/service/StoryService.class
+com/via/tabloid/backend/BackendApplication.class
+com/via/tabloid/backend/controller/StoryController.class
